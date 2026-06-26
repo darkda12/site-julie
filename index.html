@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Tarifs Maquillage — Julie Di Sano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blush:#f7e9e4;
+    --cream:#fffaf6;
+    --rose:#c97a6d;
+    --rose-deep:#a85c50;
+    --taupe:#8a7567;
+    --ink:#3c332f;
+    --gold:#cdab7d;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth; color-scheme:light only;}
+  body{
+    background:var(--cream) !important;
+    color:var(--ink) !important;
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    color:var(--rose-deep);
+    letter-spacing:.02em;
+  }
+  .stroke{
+    position:absolute;
+    pointer-events:none;
+    opacity:.55;
+  }
+
+  header{
+    min-height:78vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding:40px 24px;
+    background:
+      radial-gradient(120% 90% at 50% 0%, var(--blush) 0%, var(--cream) 65%);
+  }
+  .eyebrow{
+    font-size:.72rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--taupe);
+    margin-bottom:18px;
+  }
+  header h1{
+    font-size:clamp(2.6rem,7vw,4.4rem);
+    font-style:italic;
+    line-height:1.05;
+  }
+  header p.sub{
+    margin-top:18px;
+    font-size:1rem;
+    color:var(--taupe);
+    max-width:480px;
+  }
+  .brush{
+    width:220px;
+    height:36px;
+    margin-top:34px;
+  }
+
+  .cta-row{
+    display:flex;
+    gap:14px;
+    margin-top:34px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .btn{
+    padding:13px 30px;
+    border-radius:999px;
+    font-size:.85rem;
+    letter-spacing:.04em;
+    text-decoration:none;
+    transition:all .25s ease;
+    border:1px solid var(--rose);
+    color:var(--rose-deep);
+  }
+  .btn.filled{
+    background:var(--rose);
+    color:#fff;
+    border-color:var(--rose);
+  }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px -8px var(--rose); }
+
+  section{
+    padding:80px 24px;
+    max-width:880px;
+    margin:0 auto;
+    background:var(--cream) !important;
+  }
+  .section-head{
+    text-align:center;
+    margin-bottom:48px;
+  }
+  .section-head .eyebrow{margin-bottom:10px;}
+  .section-head h2{font-size:clamp(1.9rem,4vw,2.6rem); font-style:italic;}
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:24px;
+  }
+  .card{
+    background:var(--blush);
+    border-radius:18px;
+    padding:34px 28px;
+    position:relative;
+    transition:transform .25s ease;
+  }
+  .card:hover{ transform:translateY(-4px); }
+  .card.featured{
+    background:linear-gradient(160deg, var(--rose) 0%, var(--rose-deep) 100%);
+    color:#fff;
+  }
+  .card.featured h3, .card.featured .price{color:#fff;}
+  .card.featured .desc{color:rgba(255,255,255,.85);}
+  .tag{
+    position:absolute;
+    top:-12px; right:20px;
+    background:var(--gold);
+    color:#fff;
+    font-size:.68rem;
+    letter-spacing:.06em;
+    padding:5px 14px;
+    border-radius:999px;
+    text-transform:uppercase;
+  }
+  .card h3{font-size:1.3rem; margin-bottom:6px;}
+  .card .price{
+    font-family:'Cormorant Garamond',serif;
+    font-size:2rem;
+    color:var(--rose-deep);
+    margin:8px 0 14px;
+  }
+  .card .price span{font-size:.95rem; font-family:'Jost',sans-serif; font-weight:300; opacity:.7;}
+  .card .desc{font-size:.88rem; color:var(--taupe); margin-bottom:16px;}
+  .card ul{list-style:none; font-size:.86rem;}
+  .card li{padding:4px 0; display:flex; gap:8px;}
+  .card li::before{content:"·"; color:var(--gold); font-weight:bold;}
+  .card.featured li::before{color:#fff;}
+
+  .options{
+    margin-top:18px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    border-top:1px solid #e8d9d2;
+  }
+  .option-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:16px 4px;
+    border-bottom:1px solid #e8d9d2;
+    gap:16px;
+  }
+  .option-row .name{font-size:.95rem; color:var(--ink) !important;}
+  .option-row .note{font-size:.78rem; color:var(--taupe) !important; display:block; margin-top:2px;}
+  .option-row .amount{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.2rem;
+    color:var(--rose-deep) !important;
+    white-space:nowrap;
+  }
+
+  .quote-block{
+    text-align:center;
+    background:var(--blush);
+    border-radius:24px;
+    padding:50px 30px;
+    margin:90px auto;
+    max-width:680px;
+  }
+  .quote-block p{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:1.5rem;
+    color:var(--rose-deep);
+  }
+
+  footer{
+    text-align:center;
+    padding:60px 24px 70px;
+    color:var(--taupe);
+    font-size:.85rem;
+  }
+  footer .name{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:1.4rem;
+    color:var(--rose-deep);
+    margin-bottom:10px;
+  }
+  footer a{color:var(--rose-deep); text-decoration:none; border-bottom:1px solid var(--rose);}
+  .socials{margin-top:16px; display:flex; gap:18px; justify-content:center; align-items:center;}
+  .socials a{display:inline-flex; align-items:center; gap:8px;}
+  .socials svg{width:20px; height:20px; flex-shrink:0;}
+
+  @media (max-width:600px){
+    section{padding:60px 18px;}
+  }
+
+  [contenteditable]:hover{ outline:1px dashed var(--gold); cursor:text; }
+
+  @media (prefers-color-scheme: dark){
+    body{background:var(--cream) !important; color:var(--ink) !important;}
+    header{background:radial-gradient(120% 90% at 50% 0%, var(--blush) 0%, var(--cream) 65%) !important;}
+    section{background:var(--cream) !important;}
+    h1,h2,h3{color:var(--rose-deep) !important;}
+    p,li,span,div{color:inherit;}
+    .eyebrow{color:var(--taupe) !important;}
+    .card{background:var(--blush) !important; color:var(--ink) !important;}
+    .card h3{color:var(--rose-deep) !important;}
+    .card .desc{color:var(--taupe) !important;}
+    .card.featured{background:linear-gradient(160deg, var(--rose) 0%, var(--rose-deep) 100%) !important; color:#fff !important;}
+    .card.featured h3, .card.featured .price{color:#fff !important;}
+    .card.featured .desc{color:rgba(255,255,255,.85) !important;}
+    .option-row .name{color:var(--ink) !important;}
+    .option-row .note{color:var(--taupe) !important;}
+    .option-row .amount{color:var(--rose-deep) !important;}
+    .quote-block{background:var(--blush) !important;}
+    .quote-block p{color:var(--rose-deep) !important;}
+    footer{background:var(--cream) !important; color:var(--taupe) !important;}
+    footer .name{color:var(--rose-deep) !important;}
+    .btn{color:var(--rose-deep) !important; border-color:var(--rose) !important; background:transparent !important;}
+    .btn.filled{background:var(--rose) !important; color:#fff !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Maquillage professionnel</div>
+  <h1 contenteditable="true">Sublimer chaque<br>instant précieux</h1>
+  <p class="sub" contenteditable="true">Mariages, soirées, événements — un maquillage sur-mesure, pensé pour durer et pour vous ressembler.</p>
+
+  <svg class="brush" viewBox="0 0 220 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 22C30 4 55 30 80 16C105 2 125 28 150 14C170 3 195 20 216 10"
+          stroke="#c97a6d" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="cta-row">
+    <a href="#tarifs" class="btn filled">Voir les tarifs</a>
+    <a href="#contact" class="btn">Réserver une date</a>
+  </div>
+</header>
+
+<section id="tarifs">
+  <div class="section-head">
+    <div class="eyebrow">Prestations</div>
+    <h2>Mes formules</h2>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h3 contenteditable="true">Maquillage soirée</h3>
+      <div class="price" contenteditable="true">80 CHF</div>
+      <p class="desc" contenteditable="true">Pour un événement, une fête, une sortie spéciale.</p>
+      <ul contenteditable="true">
+        <li>Préparation peau</li>
+        <li>Maquillage longue tenue</li>
+        <li>Retouche offerte sur place</li>
+      </ul>
+    </div>
+
+    <div class="card featured">
+      <span class="tag">Le plus demandé</span>
+      <h3 contenteditable="true">Mariée</h3>
+      <div class="price" contenteditable="true">180 CHF <span>essai inclus</span></div>
+      <p class="desc" contenteditable="true">Le jour J, sans imprévu : un maquillage qui tient toute la journée et toute la nuit.</p>
+      <ul contenteditable="true">
+        <li>Essai maquillage (1h30)</li>
+        <li>Maquillage jour J</li>
+        <li>Produits longue tenue / waterproof</li>
+        <li>Déplacement inclus*</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 contenteditable="true">Demoiselles d'honneur</h3>
+      <div class="price" contenteditable="true">65 CHF <span>/ personne</span></div>
+      <p class="desc" contenteditable="true">Idéal en complément du maquillage mariée, le même jour.</p>
+      <ul contenteditable="true">
+        <li>Tarif dégressif à partir de 3 personnes</li>
+        <li>Sur le même lieu que la mariée</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="options" contenteditable="true">
+    <div class="option-row">
+      <div><span class="name">Pose de cils</span><span class="note">en complément du maquillage</span></div>
+      <div class="amount">+15 CHF</div>
+    </div>
+    <div class="option-row">
+      <div><span class="name">Déplacement</span><span class="note">au-delà de 15 km</span></div>
+      <div class="amount">0.50 CHF / km</div>
+    </div>
+    <div class="option-row">
+      <div><span class="name">Essai supplémentaire</span><span class="note">hors formule mariée</span></div>
+      <div class="amount">40 CHF</div>
+    </div>
+  </div>
+</section>
+
+<div class="quote-block">
+  <p contenteditable="true">« Un bon maquillage, c'est celui qu'on oublie — et qui nous fait juste sentir belle. »</p>
+</div>
+
+<section id="contact">
+  <div class="section-head">
+    <div class="eyebrow">Réservation</div>
+    <h2>Discutons de votre projet</h2>
+  </div>
+  <p style="text-align:center; max-width:480px; margin:0 auto 20px;" contenteditable="true">
+    Chaque visage et chaque événement sont uniques. Écrivez-moi pour un devis personnalisé et la disponibilité de votre date.
+  </p>
+  <div class="cta-row">
+    <a href="https://wa.me/41700000000" class="btn filled" contenteditable="false">Écrire sur WhatsApp</a>
+    <a href="mailto:contact@exemple.com" class="btn">Envoyer un email</a>
+  </div>
+</section>
+
+<footer>
+  <div class="name" contenteditable="true">Julie Di Sano</div>
+  <p contenteditable="true">Maquillage événementiel — Suisse romande</p>
+  <div class="socials">
+    <a href="https://instagram.com/votrecompte" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/>
+      </svg>
+      Instagram
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>
