@@ -14,6 +14,7 @@ Règles strictes :
 - N'ajoute aucun texte avant ou après, aucune explication, aucun bloc de code markdown (pas de \`\`\`).
 - Conserve tout le style, la structure et le design existants sauf ce qui doit changer selon la demande.
 - N'ajoute jamais d'attribut contenteditable.
+- N'intègre jamais d'image en base64 directement dans le HTML ; utilise toujours un fichier séparé référencé par son chemin (ex: <img src="logo.png">).
 - Si la demande est ambiguë, fais le choix le plus raisonnable et cohérent avec le reste du site.`;
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -25,7 +26,7 @@ Règles strictes :
     },
     body: JSON.stringify({
       model: 'claude-sonnet-4-6',
-      max_tokens: 8000,
+      max_tokens: 16000,
       system: systemPrompt,
       messages: [
         {
