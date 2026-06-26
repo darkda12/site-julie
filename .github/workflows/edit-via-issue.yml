@@ -1,0 +1,57 @@
+name: Modifier le site via une Issue
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  edit-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: Configurer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Demander la modification à Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: node scripts/edit-with-claude.js
+
+      - name: Commit et push si modifié
+        run: |
+          git config user.name "Claude Bot"
+          git config user.email "bot@example.com"
+          if git diff --quiet index.html; then
+            echo "Aucun changement détecté."
+          else
+            git add index.html
+            git commit -m "Modification via Issue #${{ github.event.issue.number }}: ${{ github.event.issue.title }}"
+            git push
+          fi
+
+      - name: Commenter et fermer l'Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: "✅ Modification effectuée, le site va se mettre à jour dans 1-2 minutes."
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: "closed"
+            });
