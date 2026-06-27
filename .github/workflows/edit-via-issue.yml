@@ -28,6 +28,9 @@ jobs:
         run: node scripts/edit-with-claude.js
 
       - name: Commit et push si modifié
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
           git config user.name "Claude Bot"
           git config user.email "bot@example.com"
@@ -35,7 +38,8 @@ jobs:
             echo "Aucun changement détecté."
           else
             git add index.html
-            git commit -m "Modification via Issue #${{ github.event.issue.number }}: ${{ github.event.issue.title }}"
+            printf "Modification via Issue #%s: %s\n" "$ISSUE_NUMBER" "$ISSUE_TITLE" > /tmp/commit_msg.txt
+            git commit -F /tmp/commit_msg.txt
             git push
           fi
 
