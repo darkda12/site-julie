@@ -51,6 +51,40 @@
     opacity:.55;
   }
 
+  /* ── Lang switcher ── */
+  .lang-switcher{
+    position:absolute;
+    top:20px;
+    right:24px;
+    display:flex;
+    gap:6px;
+    z-index:100;
+  }
+  .lang-btn{
+    background:none;
+    border:1px solid rgba(74,50,117,.35);
+    border-radius:999px;
+    padding:5px 12px;
+    font-family:'Jost',sans-serif;
+    font-size:.72rem;
+    font-weight:400;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--taupe);
+    cursor:pointer;
+    transition:all .2s ease;
+    line-height:1;
+  }
+  .lang-btn:hover{
+    border-color:var(--rose);
+    color:var(--rose-deep);
+  }
+  .lang-btn.active{
+    background:var(--rose);
+    border-color:var(--rose);
+    color:#fff;
+  }
+
   header{
     min-height:78vh;
     display:flex;
@@ -396,6 +430,8 @@
 
   @media (max-width:600px){
     section{padding:60px 18px;}
+    .lang-switcher{top:14px; right:14px; gap:4px;}
+    .lang-btn{padding:4px 9px; font-size:.68rem;}
 
     .faq-toggle{
       padding:18px 4px;
@@ -412,8 +448,6 @@
       margin-top:2px;
     }
   }
-
-  [contenteditable]:hover{ outline:1px dashed var(--gold); cursor:text; }
 
   @media (prefers-color-scheme: dark){
     body{background:var(--cream) !important; color:var(--ink) !important;}
@@ -452,15 +486,12 @@
     opacity:1;
     transform:translateY(0);
   }
-  /* Délai en cascade pour les cartes */
   .reveal-delay-1{ transition-delay:.08s; }
   .reveal-delay-2{ transition-delay:.18s; }
   .reveal-delay-3{ transition-delay:.28s; }
-  /* Délai en cascade pour les option-rows */
   .reveal-delay-4{ transition-delay:.10s; }
   .reveal-delay-5{ transition-delay:.20s; }
   .reveal-delay-6{ transition-delay:.30s; }
-  /* Délai en cascade pour la FAQ */
   .reveal-delay-7{ transition-delay:.10s; }
   .reveal-delay-8{ transition-delay:.20s; }
   .reveal-delay-9{ transition-delay:.30s; }
@@ -486,10 +517,17 @@
 <body>
 
 <header>
+  <!-- Sélecteur de langue -->
+  <div class="lang-switcher" role="group" aria-label="Sélection de la langue">
+    <button class="lang-btn active" data-lang="fr" aria-pressed="true">FR</button>
+    <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    <button class="lang-btn" data-lang="it" aria-pressed="false">IT</button>
+  </div>
+
   <img src="logo.png" alt="Logo Julie Di Sano" style="width:64px;height:64px;margin-bottom:20px;" />
-  <div class="eyebrow">Maquillage professionnel</div>
-  <h1>Sublimer chaque<br>instant précieux</h1>
-  <p class="sub">Mariages, soirées, événements — un maquillage sur-mesure, pensé pour durer et pour vous ressembler.</p>
+  <div class="eyebrow" data-i18n="header.eyebrow">Maquillage professionnel</div>
+  <h1 data-i18n="header.h1">Sublimer chaque<br>instant précieux</h1>
+  <p class="sub" data-i18n="header.sub">Mariages, soirées, événements — un maquillage sur-mesure, pensé pour durer et pour vous ressembler.</p>
 
   <svg class="brush" viewBox="0 0 220 36" fill="none" xmlns="http://www.w3.org/2000/svg">
     <line x1="0" y1="18" x2="100" y2="18" stroke="#4a3275" stroke-width="1.2" opacity="0.5"/>
@@ -498,63 +536,75 @@
   </svg>
 
   <div class="cta-row">
-    <a href="#tarifs" class="btn filled">Voir les tarifs</a>
-    <a href="#contact" class="btn">Réserver une date</a>
+    <a href="#tarifs" class="btn filled" data-i18n="header.cta1">Voir les tarifs</a>
+    <a href="#contact" class="btn" data-i18n="header.cta2">Réserver une date</a>
   </div>
 </header>
 
 <section id="tarifs">
   <div class="section-head">
-    <div class="eyebrow">Prestations</div>
-    <h2>Mes formules</h2>
+    <div class="eyebrow" data-i18n="tarifs.eyebrow">Prestations</div>
+    <h2 data-i18n="tarifs.h2">Mes formules</h2>
   </div>
 
   <div class="cards">
+    <!-- Soirée -->
     <div class="card reveal reveal-delay-1">
-      <h3>Maquillage soirée</h3>
+      <h3 data-i18n="card1.title">Maquillage soirée</h3>
       <div class="price">80 CHF</div>
-      <p class="desc">Pour un événement, une fête, une sortie spéciale.</p>
+      <p class="desc" data-i18n="card1.desc">Pour un événement, une fête, une sortie spéciale.</p>
       <ul>
-        <li>Préparation peau</li>
-        <li>Maquillage longue tenue</li>
+        <li data-i18n="card1.li1">Préparation peau</li>
+        <li data-i18n="card1.li2">Maquillage longue tenue</li>
       </ul>
     </div>
 
+    <!-- Mariée -->
     <div class="card featured reveal reveal-delay-2">
-      <span class="tag">Le plus demandé</span>
-      <h3>Mariée</h3>
-      <div class="price">180 CHF <span>essai inclus</span></div>
-      <p class="desc">Le jour J, sans imprévu : un maquillage qui tient toute la journée et toute la nuit.</p>
+      <span class="tag" data-i18n="card2.tag">Le plus demandé</span>
+      <h3 data-i18n="card2.title">Mariée</h3>
+      <div class="price">180 CHF <span data-i18n="card2.priceNote">essai inclus</span></div>
+      <p class="desc" data-i18n="card2.desc">Le jour J, sans imprévu : un maquillage qui tient toute la journée et toute la nuit.</p>
       <ul>
-        <li>Essai maquillage (1h30)</li>
-        <li>Maquillage jour J</li>
-        <li>Produits longue tenue / waterproof</li>
-        <li>Déplacement inclus*</li>
+        <li data-i18n="card2.li1">Essai maquillage (1h30)</li>
+        <li data-i18n="card2.li2">Maquillage jour J</li>
+        <li data-i18n="card2.li3">Produits longue tenue / waterproof</li>
+        <li data-i18n="card2.li4">Déplacement inclus*</li>
       </ul>
     </div>
 
+    <!-- Demoiselles -->
     <div class="card reveal reveal-delay-3">
-      <h3>Demoiselles d'honneur</h3>
-      <div class="price">65 CHF <span>/ personne</span></div>
-      <p class="desc">Idéal en complément du maquillage mariée, le même jour.</p>
+      <h3 data-i18n="card3.title">Demoiselles d'honneur</h3>
+      <div class="price">65 CHF <span data-i18n="card3.priceNote">/ personne</span></div>
+      <p class="desc" data-i18n="card3.desc">Idéal en complément du maquillage mariée, le même jour.</p>
       <ul>
-        <li>Tarif dégressif à partir de 3 personnes</li>
-        <li>Sur le même lieu que la mariée</li>
+        <li data-i18n="card3.li1">Tarif dégressif à partir de 3 personnes</li>
+        <li data-i18n="card3.li2">Sur le même lieu que la mariée</li>
       </ul>
     </div>
   </div>
 
   <div class="options">
     <div class="option-row reveal reveal-delay-4">
-      <div><span class="name">Pose de cils</span><span class="note">en complément du maquillage</span></div>
+      <div>
+        <span class="name" data-i18n="opt1.name">Pose de cils</span>
+        <span class="note" data-i18n="opt1.note">en complément du maquillage</span>
+      </div>
       <div class="amount">+15 CHF</div>
     </div>
     <div class="option-row reveal reveal-delay-5">
-      <div><span class="name">Déplacement</span><span class="note">au-delà de 15 km</span></div>
+      <div>
+        <span class="name" data-i18n="opt2.name">Déplacement</span>
+        <span class="note" data-i18n="opt2.note">au-delà de 15 km</span>
+      </div>
       <div class="amount">0.50 CHF / km</div>
     </div>
     <div class="option-row reveal reveal-delay-6">
-      <div><span class="name">Essai supplémentaire</span><span class="note">hors formule mariée</span></div>
+      <div>
+        <span class="name" data-i18n="opt3.name">Essai supplémentaire</span>
+        <span class="note" data-i18n="opt3.note">hors formule mariée</span>
+      </div>
       <div class="amount">40 CHF</div>
     </div>
   </div>
@@ -562,8 +612,8 @@
 
 <section id="apropos">
   <div class="section-head reveal">
-    <div class="eyebrow">Mon histoire</div>
-    <h2>À propos</h2>
+    <div class="eyebrow" data-i18n="about.eyebrow">Mon histoire</div>
+    <h2 data-i18n="about.h2">À propos</h2>
   </div>
   <div class="about-layout">
     <div class="about-photo reveal reveal-delay-1">
@@ -575,99 +625,87 @@
           <circle cx="12" cy="12" r="3.5" fill="#c9a86a"/>
         </svg>
       </div>
-      <p>Passionnée de maquillage depuis toujours, je me suis formée en autodidacte, par la pratique, l'observation et l'envie constante d'apprendre. Depuis plus de 5&nbsp;ans, j'accompagne mes clientes pour leurs plus beaux moments, mariages, soirées, événements, avec une approche qui s'adapte à chacune, pas de style imposé, mais un maquillage pensé pour révéler votre personnalité et vous faire sentir pleinement vous-même, du premier coup de pinceau jusqu'au bout de la soirée.</p>
+      <p data-i18n="about.text">Passionnée de maquillage depuis toujours, je me suis formée en autodidacte, par la pratique, l'observation et l'envie constante d'apprendre. Depuis plus de 5&nbsp;ans, j'accompagne mes clientes pour leurs plus beaux moments, mariages, soirées, événements, avec une approche qui s'adapte à chacune, pas de style imposé, mais un maquillage pensé pour révéler votre personnalité et vous faire sentir pleinement vous-même, du premier coup de pinceau jusqu'au bout de la soirée.</p>
     </div>
   </div>
 </section>
 
 <section id="faq">
   <div class="section-head reveal">
-    <div class="eyebrow">Questions fréquentes</div>
-    <h2>FAQ</h2>
+    <div class="eyebrow" data-i18n="faq.eyebrow">Questions fréquentes</div>
+    <h2 data-i18n="faq.h2">FAQ</h2>
   </div>
   <div class="faq-list">
 
     <div class="faq-row reveal reveal-delay-7">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text"><span class="faq-question-inner">Combien de temps à l'avance dois-je réserver&nbsp;?</span></span>
+        <span class="faq-question-text"><span class="faq-question-inner" data-i18n="faq.q1">Combien de temps à l'avance dois-je réserver&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg>
         </span>
       </button>
       <div class="faq-body">
-        <p class="faq-answer">Je recommande de réserver au moins 1 à 2 mois à l'avance pour un mariage, et 1 à 2 semaines pour un événement ponctuel.</p>
+        <p class="faq-answer" data-i18n="faq.a1">Je recommande de réserver au moins 1 à 2 mois à l'avance pour un mariage, et 1 à 2 semaines pour un événement ponctuel.</p>
       </div>
     </div>
 
     <div class="faq-row reveal reveal-delay-8">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text"><span class="faq-question-inner">Vous déplacez-vous&nbsp;?</span></span>
+        <span class="faq-question-text"><span class="faq-question-inner" data-i18n="faq.q2">Vous déplacez-vous&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg>
         </span>
       </button>
       <div class="faq-body">
-        <p class="faq-answer">Oui, je me déplace dans un rayon de 15 km depuis la zone de Morges sans frais supplémentaires. Au-delà, un supplément de 0.50 CHF par km s'applique.</p>
+        <p class="faq-answer" data-i18n="faq.a2">Oui, je me déplace dans un rayon de 15 km depuis la zone de Morges sans frais supplémentaires. Au-delà, un supplément de 0.50 CHF par km s'applique.</p>
       </div>
     </div>
 
     <div class="faq-row reveal reveal-delay-9">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text"><span class="faq-question-inner">Quels produits utilisez-vous&nbsp;?</span></span>
+        <span class="faq-question-text"><span class="faq-question-inner" data-i18n="faq.q3">Quels produits utilisez-vous&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg>
         </span>
       </button>
       <div class="faq-body">
-        <p class="faq-answer">Des produits professionnels longue tenue, adaptés à tous types de peau.</p>
+        <p class="faq-answer" data-i18n="faq.a3">Des produits professionnels longue tenue, adaptés à tous types de peau.</p>
       </div>
     </div>
 
     <div class="faq-row reveal reveal-delay-10">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text"><span class="faq-question-inner">Quelles marques utilisez-vous&nbsp;?</span></span>
+        <span class="faq-question-text"><span class="faq-question-inner" data-i18n="faq.q4">Quelles marques utilisez-vous&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg>
         </span>
       </button>
       <div class="faq-body">
-        <p class="faq-answer">J'utilise des marques professionnelles reconnues telles que Huda Beauty, Maybelline, NYX, L'Oréal et Anastasia Beverly Hills, sélectionnées pour leur qualité et leur tenue longue durée.</p>
+        <p class="faq-answer" data-i18n="faq.a4">J'utilise des marques professionnelles reconnues telles que Huda Beauty, Maybelline, NYX, L'Oréal et Anastasia Beverly Hills, sélectionnées pour leur qualité et leur tenue longue durée.</p>
       </div>
     </div>
 
     <div class="faq-row reveal reveal-delay-11">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text"><span class="faq-question-inner">Que faire en cas d'allergie ou de peau&nbsp;sensible&nbsp;?</span></span>
+        <span class="faq-question-text"><span class="faq-question-inner" data-i18n="faq.q5">Que faire en cas d'allergie ou de peau&nbsp;sensible&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg>
         </span>
       </button>
       <div class="faq-body">
-        <p class="faq-answer">Prévenez-moi à l'avance, je pourrai adapter les produits utilisés en conséquence.</p>
+        <p class="faq-answer" data-i18n="faq.a5">Prévenez-moi à l'avance, je pourrai adapter les produits utilisés en conséquence.</p>
       </div>
     </div>
 
     <div class="faq-row reveal reveal-delay-12">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text"><span class="faq-question-inner">Quelle est la tenue du maquillage&nbsp;?</span></span>
+        <span class="faq-question-text"><span class="faq-question-inner" data-i18n="faq.q6">Quelle est la tenue du maquillage&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg>
         </span>
       </button>
       <div class="faq-body">
-        <p class="faq-answer">Le maquillage tient toute la journée ou la soirée grâce à des techniques et produits longue tenue, avec une retouche disponible selon la formule choisie.</p>
+        <p class="faq-answer" data-i18n="faq.a6">Le maquillage tient toute la journée ou la soirée grâce à des techniques et produits longue tenue, avec une retouche disponible selon la formule choisie.</p>
       </div>
     </div>
 
@@ -676,21 +714,21 @@
 
 <section id="contact">
   <div class="section-head reveal">
-    <div class="eyebrow">Réservation</div>
-    <h2>Discutons de votre projet</h2>
+    <div class="eyebrow" data-i18n="contact.eyebrow">Réservation</div>
+    <h2 data-i18n="contact.h2">Discutons de votre projet</h2>
   </div>
-  <p class="reveal reveal-delay-1" style="text-align:center; max-width:480px; margin:0 auto 20px;">
+  <p class="reveal reveal-delay-1" style="text-align:center; max-width:480px; margin:0 auto 20px;" data-i18n="contact.text">
     Chaque visage et chaque événement sont uniques. Écrivez-moi pour un devis personnalisé et la disponibilité de votre date.
   </p>
   <div class="cta-row reveal reveal-delay-2">
-    <a href="https://wa.me/41792811708" class="btn filled">Écrire sur WhatsApp</a>
-    <a href="mailto:info@juliedisano.ch" class="btn">Envoyer un email</a>
+    <a href="https://wa.me/41792811708" class="btn filled" data-i18n="contact.cta1">Écrire sur WhatsApp</a>
+    <a href="mailto:info@juliedisano.ch" class="btn" data-i18n="contact.cta2">Envoyer un email</a>
   </div>
 </section>
 
 <footer>
   <div class="name">Julie Di Sano</div>
-  <p>Maquillage événementiel — Suisse romande</p>
+  <p data-i18n="footer.tagline">Maquillage événementiel — Suisse romande</p>
   <div class="socials">
     <a href="https://instagram.com/disanoj" target="_blank">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -704,73 +742,320 @@
 </footer>
 
 <script>
-  /* ── Accordéon FAQ ── */
-  (function () {
-    var rows = document.querySelectorAll('.faq-row');
+/* ══════════════════════════════════════════
+   TRADUCTIONS
+══════════════════════════════════════════ */
+var i18n = {
+  fr: {
+    "header.eyebrow": "Maquillage professionnel",
+    "header.h1": "Sublimer chaque<br>instant précieux",
+    "header.sub": "Mariages, soirées, événements — un maquillage sur-mesure, pensé pour durer et pour vous ressembler.",
+    "header.cta1": "Voir les tarifs",
+    "header.cta2": "Réserver une date",
 
-    rows.forEach(function (row) {
-      var toggle = row.querySelector('.faq-toggle');
-      var body   = row.querySelector('.faq-body');
+    "tarifs.eyebrow": "Prestations",
+    "tarifs.h2": "Mes formules",
 
-      if (!toggle || !body) return;
+    "card1.title": "Maquillage soirée",
+    "card1.desc": "Pour un événement, une fête, une sortie spéciale.",
+    "card1.li1": "Préparation peau",
+    "card1.li2": "Maquillage longue tenue",
 
-      toggle.addEventListener('click', function () {
-        var isOpen = row.classList.contains('open');
+    "card2.tag": "Le plus demandé",
+    "card2.title": "Mariée",
+    "card2.priceNote": "essai inclus",
+    "card2.desc": "Le jour J, sans imprévu : un maquillage qui tient toute la journée et toute la nuit.",
+    "card2.li1": "Essai maquillage (1h30)",
+    "card2.li2": "Maquillage jour J",
+    "card2.li3": "Produits longue tenue / waterproof",
+    "card2.li4": "Déplacement inclus*",
 
-        // Ferme toutes les autres lignes
-        rows.forEach(function (other) {
-          if (other !== row && other.classList.contains('open')) {
-            var otherToggle = other.querySelector('.faq-toggle');
-            var otherBody   = other.querySelector('.faq-body');
-            other.classList.remove('open');
-            otherBody.style.maxHeight = '0';
-            otherBody.style.opacity   = '0';
-            if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
+    "card3.title": "Demoiselles d'honneur",
+    "card3.priceNote": "/ personne",
+    "card3.desc": "Idéal en complément du maquillage mariée, le même jour.",
+    "card3.li1": "Tarif dégressif à partir de 3 personnes",
+    "card3.li2": "Sur le même lieu que la mariée",
 
-        // Bascule la ligne courante
-        if (isOpen) {
-          row.classList.remove('open');
-          body.style.maxHeight = '0';
-          body.style.opacity   = '0';
-          toggle.setAttribute('aria-expanded', 'false');
-        } else {
-          row.classList.add('open');
-          body.style.maxHeight = body.scrollHeight + 'px';
-          body.style.opacity   = '1';
-          toggle.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
-  })();
+    "opt1.name": "Pose de cils",
+    "opt1.note": "en complément du maquillage",
+    "opt2.name": "Déplacement",
+    "opt2.note": "au-delà de 15 km",
+    "opt3.name": "Essai supplémentaire",
+    "opt3.note": "hors formule mariée",
 
-  /* ── Animation scroll ── */
-  (function () {
-    if (typeof IntersectionObserver === 'undefined') {
-      document.querySelectorAll('.reveal').forEach(function (el) {
-        el.classList.add('visible');
-      });
-      return;
+    "about.eyebrow": "Mon histoire",
+    "about.h2": "À propos",
+    "about.text": "Passionnée de maquillage depuis toujours, je me suis formée en autodidacte, par la pratique, l'observation et l'envie constante d'apprendre. Depuis plus de 5\u00a0ans, j'accompagne mes clientes pour leurs plus beaux moments, mariages, soirées, événements, avec une approche qui s'adapte à chacune, pas de style imposé, mais un maquillage pensé pour révéler votre personnalité et vous faire sentir pleinement vous-même, du premier coup de pinceau jusqu'au bout de la soirée.",
+
+    "faq.eyebrow": "Questions fréquentes",
+    "faq.h2": "FAQ",
+    "faq.q1": "Combien de temps à l'avance dois-je réserver\u00a0?",
+    "faq.a1": "Je recommande de réserver au moins 1 à 2 mois à l'avance pour un mariage, et 1 à 2 semaines pour un événement ponctuel.",
+    "faq.q2": "Vous déplacez-vous\u00a0?",
+    "faq.a2": "Oui, je me déplace dans un rayon de 15 km depuis la zone de Morges sans frais supplémentaires. Au-delà, un supplément de 0.50 CHF par km s'applique.",
+    "faq.q3": "Quels produits utilisez-vous\u00a0?",
+    "faq.a3": "Des produits professionnels longue tenue, adaptés à tous types de peau.",
+    "faq.q4": "Quelles marques utilisez-vous\u00a0?",
+    "faq.a4": "J'utilise des marques professionnelles reconnues telles que Huda Beauty, Maybelline, NYX, L'Oréal et Anastasia Beverly Hills, sélectionnées pour leur qualité et leur tenue longue durée.",
+    "faq.q5": "Que faire en cas d'allergie ou de peau\u00a0sensible\u00a0?",
+    "faq.a5": "Prévenez-moi à l'avance, je pourrai adapter les produits utilisés en conséquence.",
+    "faq.q6": "Quelle est la tenue du maquillage\u00a0?",
+    "faq.a6": "Le maquillage tient toute la journée ou la soirée grâce à des techniques et produits longue tenue, avec une retouche disponible selon la formule choisie.",
+
+    "contact.eyebrow": "Réservation",
+    "contact.h2": "Discutons de votre projet",
+    "contact.text": "Chaque visage et chaque événement sont uniques. Écrivez-moi pour un devis personnalisé et la disponibilité de votre date.",
+    "contact.cta1": "Écrire sur WhatsApp",
+    "contact.cta2": "Envoyer un email",
+
+    "footer.tagline": "Maquillage événementiel — Suisse romande"
+  },
+
+  en: {
+    "header.eyebrow": "Professional make-up artist",
+    "header.h1": "Enhancing every<br>precious moment",
+    "header.sub": "Weddings, evenings, events — bespoke make-up designed to last and to look like you.",
+    "header.cta1": "View pricing",
+    "header.cta2": "Book a date",
+
+    "tarifs.eyebrow": "Services",
+    "tarifs.h2": "My packages",
+
+    "card1.title": "Evening make-up",
+    "card1.desc": "For an event, a party, or a special night out.",
+    "card1.li1": "Skin preparation",
+    "card1.li2": "Long-lasting make-up",
+
+    "card2.tag": "Most popular",
+    "card2.title": "Bride",
+    "card2.priceNote": "trial included",
+    "card2.desc": "Your big day, without surprises: make-up that holds all day and all night long.",
+    "card2.li1": "Make-up trial (1h30)",
+    "card2.li2": "Wedding day make-up",
+    "card2.li3": "Long-lasting / waterproof products",
+    "card2.li4": "Travel included*",
+
+    "card3.title": "Bridesmaids",
+    "card3.priceNote": "/ person",
+    "card3.desc": "Perfect alongside the bridal make-up, on the same day.",
+    "card3.li1": "Reduced rate from 3 people",
+    "card3.li2": "At the same venue as the bride",
+
+    "opt1.name": "Lash application",
+    "opt1.note": "as an add-on to make-up",
+    "opt2.name": "Travel",
+    "opt2.note": "beyond 15 km",
+    "opt3.name": "Additional trial",
+    "opt3.note": "outside the bridal package",
+
+    "about.eyebrow": "My story",
+    "about.h2": "About me",
+    "about.text": "Passionate about make-up for as long as I can remember, I trained myself through practice, observation and a constant desire to learn. For over 5\u00a0years, I have accompanied my clients through their most beautiful moments — weddings, evenings, events — with an approach tailored to each person. No imposed style, but make-up thoughtfully crafted to reveal your personality and make you feel fully yourself, from the very first brushstroke to the end of the night.",
+
+    "faq.eyebrow": "Frequently asked questions",
+    "faq.h2": "FAQ",
+    "faq.q1": "How far in advance should I book?",
+    "faq.a1": "I recommend booking at least 1 to 2 months in advance for a wedding, and 1 to 2 weeks for a one-off event.",
+    "faq.q2": "Do you travel to clients?",
+    "faq.a2": "Yes, I travel within a 15 km radius of the Morges area at no extra charge. Beyond that, a supplement of CHF 0.50 per km applies.",
+    "faq.q3": "What products do you use?",
+    "faq.a3": "Professional, long-lasting products suited to all skin types.",
+    "faq.q4": "Which brands do you work with?",
+    "faq.a4": "I work with well-known professional brands such as Huda Beauty, Maybelline, NYX, L'Oréal and Anastasia Beverly Hills, chosen for their quality and long-lasting wear.",
+    "faq.q5": "What if I have allergies or sensitive skin?",
+    "faq.a5": "Let me know in advance and I will adapt the products used accordingly.",
+    "faq.q6": "How long does the make-up last?",
+    "faq.a6": "The make-up holds all day or evening thanks to long-lasting techniques and products, with touch-up service available depending on the package chosen.",
+
+    "contact.eyebrow": "Booking",
+    "contact.h2": "Let's talk about your project",
+    "contact.text": "Every face and every event is unique. Get in touch for a personalised quote and to check your date's availability.",
+    "contact.cta1": "Message on WhatsApp",
+    "contact.cta2": "Send an email",
+
+    "footer.tagline": "Event make-up — French-speaking Switzerland"
+  },
+
+  it: {
+    "header.eyebrow": "Trucco professionale",
+    "header.h1": "Valorizzare ogni<br>momento prezioso",
+    "header.sub": "Matrimoni, serate, eventi — un trucco su misura, pensato per durare e per assomigliarti.",
+    "header.cta1": "Scopri i prezzi",
+    "header.cta2": "Prenota una data",
+
+    "tarifs.eyebrow": "Servizi",
+    "tarifs.h2": "I miei pacchetti",
+
+    "card1.title": "Trucco serata",
+    "card1.desc": "Per un evento, una festa o un'uscita speciale.",
+    "card1.li1": "Preparazione della pelle",
+    "card1.li2": "Trucco lunga tenuta",
+
+    "card2.tag": "Il più richiesto",
+    "card2.title": "Sposa",
+    "card2.priceNote": "prova inclusa",
+    "card2.desc": "Il giorno del sì, senza sorprese: un trucco che resiste per tutta la giornata e tutta la notte.",
+    "card2.li1": "Prova trucco (1h30)",
+    "card2.li2": "Trucco giorno del matrimonio",
+    "card2.li3": "Prodotti lunga tenuta / waterproof",
+    "card2.li4": "Spostamento incluso*",
+
+    "card3.title": "Damigelle d'onore",
+    "card3.priceNote": "/ persona",
+    "card3.desc": "Ideale in abbinamento al trucco sposa, nella stessa giornata.",
+    "card3.li1": "Tariffa decrescente da 3 persone",
+    "card3.li2": "Nello stesso luogo della sposa",
+
+    "opt1.name": "Applicazione ciglia",
+    "opt1.note": "in aggiunta al trucco",
+    "opt2.name": "Spostamento",
+    "opt2.note": "oltre i 15 km",
+    "opt3.name": "Prova aggiuntiva",
+    "opt3.note": "fuori dal pacchetto sposa",
+
+    "about.eyebrow": "La mia storia",
+    "about.h2": "Chi sono",
+    "about.text": "Appassionata di trucco da sempre, mi sono formata in modo autodidatta, attraverso la pratica, l'osservazione e la voglia costante di imparare. Da più di 5\u00a0anni accompagno le mie clienti nei loro momenti più belli — matrimoni, serate, eventi — con un approccio che si adatta a ciascuna. Nessuno stile imposto, ma un trucco pensato per rivelare la tua personalità e farti sentire pienamente te stessa, dal primo pennellata fino alla fine della serata.",
+
+    "faq.eyebrow": "Domande frequenti",
+    "faq.h2": "FAQ",
+    "faq.q1": "Con quanto anticipo devo prenotare?",
+    "faq.a1": "Consiglio di prenotare almeno 1-2 mesi in anticipo per un matrimonio, e 1-2 settimane per un evento occasionale.",
+    "faq.q2": "Vi spostate dalla cliente?",
+    "faq.a2": "Sì, mi sposto in un raggio di 15 km dalla zona di Morges senza costi aggiuntivi. Oltre tale distanza, si applica un supplemento di 0.50 CHF al km.",
+    "faq.q3": "Quali prodotti usa?",
+    "faq.a3": "Prodotti professionali a lunga tenuta, adatti a tutti i tipi di pelle.",
+    "faq.q4": "Quali marchi utilizza?",
+    "faq.a4": "Utilizzo marchi professionali rinomati come Huda Beauty, Maybelline, NYX, L'Oréal e Anastasia Beverly Hills, selezionati per la loro qualità e la lunga durata.",
+    "faq.q5": "Come comportarsi in caso di allergie o pelle sensibile?",
+    "faq.a5": "Comunicatemelo in anticipo e adatterò i prodotti utilizzati di conseguenza.",
+    "faq.q6": "Quanto dura il trucco?",
+    "faq.a6": "Il trucco resiste per tutta la giornata o la serata grazie a tecniche e prodotti a lunga tenuta, con ritocco disponibile secondo il pacchetto scelto.",
+
+    "contact.eyebrow": "Prenotazione",
+    "contact.h2": "Parliamo del tuo progetto",
+    "contact.text": "Ogni viso e ogni evento sono unici. Scrivimi per un preventivo personalizzato e per verificare la disponibilità della tua data.",
+    "contact.cta1": "Scrivi su WhatsApp",
+    "contact.cta2": "Invia un'email",
+
+    "footer.tagline": "Trucco per eventi — Svizzera romanda"
+  }
+};
+
+/* ══════════════════════════════════════════
+   MOTEUR DE TRADUCTION
+══════════════════════════════════════════ */
+var currentLang = 'fr';
+
+function applyLang(lang) {
+  if (!i18n[lang]) return;
+  currentLang = lang;
+  var strings = i18n[lang];
+
+  /* Met à jour l'attribut lang de <html> */
+  document.documentElement.lang = lang;
+
+  /* Traduit tous les éléments marqués */
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) {
+      el.innerHTML = strings[key];
     }
+  });
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
+  /* Met à jour les boutons de langue */
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    var isActive = btn.getAttribute('data-lang') === lang;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+
+  /* Ferme tous les accordéons ouverts pour éviter les hauteurs cassées */
+  document.querySelectorAll('.faq-row.open').forEach(function(row) {
+    var body = row.querySelector('.faq-body');
+    var toggle = row.querySelector('.faq-toggle');
+    row.classList.remove('open');
+    if (body) { body.style.maxHeight = '0'; body.style.opacity = '0'; }
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  });
+}
+
+/* Attache les clics sur les boutons de langue */
+document.querySelectorAll('.lang-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    applyLang(btn.getAttribute('data-lang'));
+  });
+});
+
+/* ══════════════════════════════════════════
+   ACCORDÉON FAQ
+══════════════════════════════════════════ */
+(function () {
+  var rows = document.querySelectorAll('.faq-row');
+
+  rows.forEach(function (row) {
+    var toggle = row.querySelector('.faq-toggle');
+    var body   = row.querySelector('.faq-body');
+
+    if (!toggle || !body) return;
+
+    toggle.addEventListener('click', function () {
+      var isOpen = row.classList.contains('open');
+
+      rows.forEach(function (other) {
+        if (other !== row && other.classList.contains('open')) {
+          var otherToggle = other.querySelector('.faq-toggle');
+          var otherBody   = other.querySelector('.faq-body');
+          other.classList.remove('open');
+          otherBody.style.maxHeight = '0';
+          otherBody.style.opacity   = '0';
+          if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
         }
       });
-    }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
-    });
 
-    document.querySelectorAll('.reveal').forEach(function (el) {
-      observer.observe(el);
+      if (isOpen) {
+        row.classList.remove('open');
+        body.style.maxHeight = '0';
+        body.style.opacity   = '0';
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
+        row.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        body.style.opacity   = '1';
+        toggle.setAttribute('aria-expanded', 'true');
+      }
     });
-  })();
+  });
+})();
+
+/* ══════════════════════════════════════════
+   ANIMATION SCROLL
+══════════════════════════════════════════ */
+(function () {
+  if (typeof IntersectionObserver === 'undefined') {
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      el.classList.add('visible');
+    });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  document.querySelectorAll('.reveal').forEach(function (el) {
+    observer.observe(el);
+  });
+})();
 </script>
 
 </body>
