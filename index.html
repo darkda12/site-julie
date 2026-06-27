@@ -248,7 +248,7 @@
     cursor:pointer;
     padding:20px 4px;
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content:space-between;
     gap:12px;
     text-align:left;
@@ -270,6 +270,9 @@
     align-items:flex-start;
     gap:10px;
     flex:1;
+    min-width:0;
+    word-break:break-word;
+    hyphens:auto;
   }
   .faq-question-text::before{
     content:"·";
@@ -278,6 +281,10 @@
     font-style:normal;
     flex-shrink:0;
     line-height:1.4;
+  }
+  .faq-question-inner{
+    flex:1;
+    min-width:0;
   }
   .faq-icon{
     flex-shrink:0;
@@ -288,6 +295,7 @@
     justify-content:center;
     color:var(--taupe);
     transition:transform .3s ease, color .25s ease;
+    margin-top:3px;
   }
   .faq-icon svg{
     width:14px;
@@ -354,6 +362,21 @@
 
   @media (max-width:600px){
     section{padding:60px 18px;}
+
+    .faq-toggle{
+      padding:18px 4px;
+      align-items:flex-start;
+    }
+    .faq-question-text{
+      font-size:1.08rem;
+      line-height:1.45;
+      align-items:flex-start;
+      word-break:normal;
+      overflow-wrap:break-word;
+    }
+    .faq-icon{
+      margin-top:2px;
+    }
   }
 
   [contenteditable]:hover{ outline:1px dashed var(--gold); cursor:text; }
@@ -527,7 +550,7 @@
 
     <div class="faq-row reveal reveal-delay-7">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text">Combien de temps à l'avance dois-je réserver ?</span>
+        <span class="faq-question-text"><span class="faq-question-inner">Combien de temps à l'avance dois-je réserver&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <polyline points="6 9 12 15 18 9"/>
@@ -541,7 +564,7 @@
 
     <div class="faq-row reveal reveal-delay-8">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text">Vous déplacez-vous ?</span>
+        <span class="faq-question-text"><span class="faq-question-inner">Vous déplacez-vous&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <polyline points="6 9 12 15 18 9"/>
@@ -555,7 +578,7 @@
 
     <div class="faq-row reveal reveal-delay-9">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text">Quels produits utilisez-vous ?</span>
+        <span class="faq-question-text"><span class="faq-question-inner">Quels produits utilisez-vous&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <polyline points="6 9 12 15 18 9"/>
@@ -569,7 +592,7 @@
 
     <div class="faq-row reveal reveal-delay-10">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text">Quelles marques utilisez-vous ?</span>
+        <span class="faq-question-text"><span class="faq-question-inner">Quelles marques utilisez-vous&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <polyline points="6 9 12 15 18 9"/>
@@ -583,7 +606,7 @@
 
     <div class="faq-row reveal reveal-delay-11">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text">Que faire en cas d'allergie ou de peau sensible ?</span>
+        <span class="faq-question-text"><span class="faq-question-inner">Que faire en cas d'allergie ou de peau&nbsp;sensible&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <polyline points="6 9 12 15 18 9"/>
@@ -597,7 +620,7 @@
 
     <div class="faq-row reveal reveal-delay-12">
       <button class="faq-toggle" aria-expanded="false">
-        <span class="faq-question-text">Le maquillage tient-il toute la journée ou la soirée ?</span>
+        <span class="faq-question-text"><span class="faq-question-inner">Le maquillage tient-il toute la journée ou la&nbsp;soirée&nbsp;?</span></span>
         <span class="faq-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <polyline points="6 9 12 15 18 9"/>
