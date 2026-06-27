@@ -229,6 +229,44 @@
     opacity:.35;
   }
 
+  /* ── FAQ ── */
+  .faq-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    border-top:1px solid #e8d9d2;
+    max-width:680px;
+    margin:0 auto;
+  }
+  .faq-row{
+    padding:20px 4px;
+    border-bottom:1px solid #e8d9d2;
+  }
+  .faq-question{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--rose-deep);
+    margin-bottom:8px;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .faq-question::before{
+    content:"·";
+    color:var(--gold);
+    font-weight:bold;
+    font-style:normal;
+    flex-shrink:0;
+    line-height:1.4;
+  }
+  .faq-answer{
+    font-size:.92rem;
+    color:var(--taupe);
+    line-height:1.75;
+    padding-left:18px;
+  }
+
   .quote-block{
     text-align:center;
     background:var(--blush);
@@ -284,6 +322,8 @@
     .option-row .name{color:var(--ink) !important;}
     .option-row .note{color:var(--taupe) !important;}
     .option-row .amount{color:var(--rose-deep) !important;}
+    .faq-question{color:var(--rose-deep) !important;}
+    .faq-answer{color:var(--taupe) !important;}
     .quote-block{background:var(--blush) !important;}
     .quote-block p{color:var(--rose-deep) !important;}
     footer{background:var(--cream) !important; color:var(--taupe) !important;}
@@ -311,6 +351,12 @@
   .reveal-delay-4{ transition-delay:.10s; }
   .reveal-delay-5{ transition-delay:.20s; }
   .reveal-delay-6{ transition-delay:.30s; }
+  /* Délai en cascade pour la FAQ */
+  .reveal-delay-7{ transition-delay:.10s; }
+  .reveal-delay-8{ transition-delay:.20s; }
+  .reveal-delay-9{ transition-delay:.30s; }
+  .reveal-delay-10{ transition-delay:.40s; }
+  .reveal-delay-11{ transition-delay:.50s; }
 
   @media (prefers-reduced-motion: reduce){
     .reveal{
@@ -410,6 +456,35 @@
       </svg>
     </div>
     <p>Passionnée de maquillage depuis toujours, je me suis formée en autodidacte, par la pratique, l'observation et l'envie constante d'apprendre. Depuis plus de 5 ans, j'accompagne mes clientes pour leurs plus beaux moments, mariages, soirées, événements, avec une approche qui s'adapte à chacune, pas de style imposé, mais un maquillage pensé pour révéler votre personnalité et vous faire sentir pleinement vous-même, du premier coup de pinceau jusqu'au bout de la soirée.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="section-head reveal">
+    <div class="eyebrow">Questions fréquentes</div>
+    <h2>FAQ</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-row reveal reveal-delay-7">
+      <div class="faq-question">Combien de temps à l'avance dois-je réserver ?</div>
+      <p class="faq-answer">Je recommande de réserver au moins 1 à 2 mois à l'avance pour un mariage, et 1 à 2 semaines pour un événement ponctuel.</p>
+    </div>
+    <div class="faq-row reveal reveal-delay-8">
+      <div class="faq-question">Vous déplacez-vous ?</div>
+      <p class="faq-answer">Oui, je me déplace dans un rayon de 15 km depuis la zone de Morges sans frais supplémentaires. Au-delà, un supplément de 0.50 CHF par km s'applique.</p>
+    </div>
+    <div class="faq-row reveal reveal-delay-9">
+      <div class="faq-question">Quels produits utilisez-vous ?</div>
+      <p class="faq-answer">Des produits professionnels longue tenue, adaptés à tous types de peau.</p>
+    </div>
+    <div class="faq-row reveal reveal-delay-10">
+      <div class="faq-question">Que faire en cas d'allergie ou de peau sensible ?</div>
+      <p class="faq-answer">Prévenez-moi à l'avance, je pourrai adapter les produits utilisés en conséquence.</p>
+    </div>
+    <div class="faq-row reveal reveal-delay-11">
+      <div class="faq-question">Le maquillage tient-il toute la journée ou la soirée ?</div>
+      <p class="faq-answer">Oui, j'utilise des techniques et produits longue tenue, avec une retouche disponible selon la formule choisie.</p>
+    </div>
   </div>
 </section>
 
