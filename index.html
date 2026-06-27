@@ -334,6 +334,117 @@
     color:var(--rose-deep);
   }
 
+  /* ── Marques ── */
+  .brands-section{
+    width:100%;
+    max-width:100%;
+    padding:60px 0;
+    background:linear-gradient(160deg, var(--rose) 0%, var(--rose-deep) 100%);
+    overflow:hidden;
+    position:relative;
+  }
+  .brands-section-inner{
+    text-align:center;
+    margin-bottom:32px;
+  }
+  .brands-section-inner .eyebrow{
+    color:rgba(255,255,255,.6);
+    margin-bottom:0;
+  }
+  .brands-section-inner h2{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:clamp(1.5rem,3vw,2rem);
+    color:#fff;
+    margin-top:8px;
+  }
+
+  /* Masques de fondu sur les bords */
+  .brands-track-wrapper{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+  }
+  .brands-track-wrapper::before,
+  .brands-track-wrapper::after{
+    content:'';
+    position:absolute;
+    top:0;
+    width:120px;
+    height:100%;
+    z-index:2;
+    pointer-events:none;
+  }
+  .brands-track-wrapper::before{
+    left:0;
+    background:linear-gradient(to right, #2e1650 0%, transparent 100%);
+  }
+  .brands-track-wrapper::after{
+    right:0;
+    background:linear-gradient(to left, #120a1e 0%, transparent 100%);
+  }
+
+  .brands-track{
+    display:flex;
+    align-items:center;
+    width:max-content;
+    animation:brands-scroll 22s linear infinite;
+  }
+  .brands-track:hover{
+    animation-play-state:paused;
+  }
+
+  @keyframes brands-scroll{
+    0%   { transform:translateX(0); }
+    100% { transform:translateX(-50%); }
+  }
+
+  .brand-item{
+    display:inline-flex;
+    align-items:center;
+    gap:28px;
+    padding:0 40px;
+    white-space:nowrap;
+  }
+  .brand-name{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:clamp(1.3rem,2.5vw,1.8rem);
+    font-weight:500;
+    color:rgba(255,255,255,.85);
+    letter-spacing:.04em;
+    transition:color .25s ease;
+  }
+  .brands-track:hover .brand-name{
+    color:rgba(255,255,255,.85);
+  }
+  .brand-sep{
+    display:inline-block;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--gold);
+    opacity:.8;
+    flex-shrink:0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .brands-track{
+      animation:none;
+    }
+    .brands-track-wrapper::before,
+    .brands-track-wrapper::after{
+      display:none;
+    }
+    .brands-track{
+      flex-wrap:wrap;
+      justify-content:center;
+      width:100%;
+      gap:16px;
+      padding:0 24px;
+    }
+  }
+
   footer{
     text-align:center;
     padding:60px 24px 70px;
@@ -354,6 +465,10 @@
 
   @media (max-width:600px){
     section{padding:60px 18px;}
+    .brands-track-wrapper::before,
+    .brands-track-wrapper::after{
+      width:60px;
+    }
   }
 
   [contenteditable]:hover{ outline:1px dashed var(--gold); cursor:text; }
@@ -614,6 +729,48 @@
     <a href="mailto:info@juliedisano.ch" class="btn">Envoyer un email</a>
   </div>
 </section>
+
+<!-- ── Marques de confiance ── -->
+<div class="brands-section">
+  <div class="brands-section-inner">
+    <div class="eyebrow">Mes marques de confiance</div>
+    <h2>Des produits que j'aime &amp; que j'utilise</h2>
+  </div>
+  <div class="brands-track-wrapper">
+    <div class="brands-track">
+      <!-- Première série -->
+      <div class="brand-item">
+        <span class="brand-name">Huda Beauty</span>
+        <span class="brand-sep"></span>
+        <span class="brand-name">Maybelline</span>
+        <span class="brand-sep"></span>
+        <span class="brand-name">NYX</span>
+        <span class="brand-sep"></span>
+        <span class="brand-name">L'Oréal</span>
+        <span class="brand-sep"></span>
+        <span class="brand-name">Sephora</span>
+        <span class="brand-sep"></span>
+        <span class="brand-name">Anastasia Beverly Hills</span>
+        <span class="brand-sep"></span>
+      </div>
+      <!-- Deuxième série (copie exacte pour le défilement continu) -->
+      <div class="brand-item">
+        <span class="brand-name">Huda Beauty</span>
+        <span class="brand-sep"></span>
+        <span class="brand-name">Maybelline</span>
+        <span class="brand-sep"></span>
+        <span class="brand-name">NYX</span>
+        <span class="brand-sep"></span>
+        <span class="brand-name">L'Oréal</span>
+        <span class="brand-sep"></span>
+        <span class="brand-name">Sephora</span>
+        <span class="brand-sep"></span>
+        <span class="brand-name">Anastasia Beverly Hills</span>
+        <span class="brand-sep"></span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="name">Julie Di Sano</div>
