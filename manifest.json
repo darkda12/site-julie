@@ -1,0 +1,25 @@
+{
+  "name": "Julie Di Sano - Maquillage professionnel",
+  "short_name": "Julie Di Sano",
+  "description": "Maquillage professionnel - Suisse romande",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8f5f7",
+  "theme_color": "#4a3275",
+  "lang": "fr-CH",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
