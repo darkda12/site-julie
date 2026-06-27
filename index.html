@@ -192,6 +192,34 @@
     white-space:nowrap;
   }
 
+  /* ── À propos ── */
+  .about-block{
+    max-width:680px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .about-block p{
+    font-size:1rem;
+    color:var(--taupe);
+    line-height:1.85;
+  }
+  .about-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    margin-bottom:36px;
+  }
+  .about-divider::before,
+  .about-divider::after{
+    content:'';
+    display:block;
+    height:1px;
+    width:60px;
+    background:var(--rose);
+    opacity:.35;
+  }
+
   .quote-block{
     text-align:center;
     background:var(--blush);
@@ -253,6 +281,7 @@
     footer .name{color:var(--rose-deep) !important;}
     .btn{color:var(--rose-deep) !important; border-color:var(--rose) !important; background:transparent !important;}
     .btn.filled{background:var(--rose) !important; color:#fff !important;}
+    .about-block p{color:var(--taupe) !important;}
   }
 
   /* ── Animation scroll ── */
@@ -358,6 +387,21 @@
       <div><span class="name">Essai supplémentaire</span><span class="note">hors formule mariée</span></div>
       <div class="amount">40 CHF</div>
     </div>
+  </div>
+</section>
+
+<section id="apropos">
+  <div class="section-head reveal">
+    <div class="eyebrow">Mon histoire</div>
+    <h2>À propos</h2>
+  </div>
+  <div class="about-block reveal reveal-delay-1">
+    <div class="about-divider">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="3.5" fill="#c9a86a"/>
+      </svg>
+    </div>
+    <p>Passionnée de maquillage depuis toujours, je me suis formée en autodidacte, par la pratique, l'observation et l'envie constante d'apprendre. Depuis plus de 5 ans, j'accompagne mes clientes pour leurs plus beaux moments, mariages, soirées, événements, avec une approche qui s'adapte à chacune, pas de style imposé, mais un maquillage pensé pour révéler votre personnalité et vous faire sentir pleinement vous-même, du premier coup de pinceau jusqu'au bout de la soirée.</p>
   </div>
 </section>
 
