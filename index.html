@@ -428,6 +428,14 @@
   .socials a{display:inline-flex; align-items:center; gap:8px;}
   .socials svg{width:20px; height:20px; flex-shrink:0;}
 
+  .footer-credit{
+    margin-top:28px;
+    font-size:.72rem;
+    color:var(--taupe);
+    opacity:.55;
+    letter-spacing:.03em;
+  }
+
   @media (max-width:600px){
     section{padding:60px 18px;}
     .lang-switcher{top:14px; right:14px; gap:4px;}
@@ -474,6 +482,7 @@
     .btn{color:var(--rose-deep) !important; border-color:var(--rose) !important; background:transparent !important;}
     .btn.filled{background:var(--rose) !important; color:#fff !important;}
     .about-text p{color:var(--taupe) !important;}
+    .footer-credit{color:var(--taupe) !important;}
   }
 
   /* ── Animation scroll ── */
@@ -752,6 +761,7 @@
       Instagram
     </a>
   </div>
+  <p class="footer-credit" data-i18n="footer.credit">Site créé par DDS Creation</p>
 </footer>
 
 <script>
@@ -823,7 +833,8 @@ var i18n = {
     "contact.cta1": "Écrire sur WhatsApp",
     "contact.cta2": "Envoyer un email",
 
-    "footer.tagline": "Maquillage événementiel — Suisse romande"
+    "footer.tagline": "Maquillage événementiel — Suisse romande",
+    "footer.credit": "Site créé par DDS Creation"
   },
 
   en: {
@@ -890,7 +901,8 @@ var i18n = {
     "contact.cta1": "Message on WhatsApp",
     "contact.cta2": "Send an email",
 
-    "footer.tagline": "Event make-up — French-speaking Switzerland"
+    "footer.tagline": "Event make-up — French-speaking Switzerland",
+    "footer.credit": "Website created by DDS Creation"
   },
 
   it: {
@@ -957,7 +969,8 @@ var i18n = {
     "contact.cta1": "Scrivi su WhatsApp",
     "contact.cta2": "Invia un'email",
 
-    "footer.tagline": "Trucco per eventi — Svizzera romanda"
+    "footer.tagline": "Trucco per eventi — Svizzera romanda",
+    "footer.credit": "Sito creato da DDS Creation"
   }
 };
 
