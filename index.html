@@ -254,6 +254,33 @@
     .btn{color:var(--rose-deep) !important; border-color:var(--rose) !important; background:transparent !important;}
     .btn.filled{background:var(--rose) !important; color:#fff !important;}
   }
+
+  /* ── Animation scroll ── */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .65s ease, transform .65s ease;
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  /* Délai en cascade pour les cartes */
+  .reveal-delay-1{ transition-delay:.08s; }
+  .reveal-delay-2{ transition-delay:.18s; }
+  .reveal-delay-3{ transition-delay:.28s; }
+  /* Délai en cascade pour les option-rows */
+  .reveal-delay-4{ transition-delay:.10s; }
+  .reveal-delay-5{ transition-delay:.20s; }
+  .reveal-delay-6{ transition-delay:.30s; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{
+      opacity:1;
+      transform:none;
+      transition:none;
+    }
+  }
 </style>
 </head>
 <body>
@@ -283,7 +310,7 @@
   </div>
 
   <div class="cards">
-    <div class="card">
+    <div class="card reveal reveal-delay-1">
       <h3>Maquillage soirée</h3>
       <div class="price">80 CHF</div>
       <p class="desc">Pour un événement, une fête, une sortie spéciale.</p>
@@ -294,7 +321,7 @@
       </ul>
     </div>
 
-    <div class="card featured">
+    <div class="card featured reveal reveal-delay-2">
       <span class="tag">Le plus demandé</span>
       <h3>Mariée</h3>
       <div class="price">180 CHF <span>essai inclus</span></div>
@@ -307,7 +334,7 @@
       </ul>
     </div>
 
-    <div class="card">
+    <div class="card reveal reveal-delay-3">
       <h3>Demoiselles d'honneur</h3>
       <div class="price">65 CHF <span>/ personne</span></div>
       <p class="desc">Idéal en complément du maquillage mariée, le même jour.</p>
@@ -319,34 +346,34 @@
   </div>
 
   <div class="options">
-    <div class="option-row">
+    <div class="option-row reveal reveal-delay-4">
       <div><span class="name">Pose de cils</span><span class="note">en complément du maquillage</span></div>
       <div class="amount">+15 CHF</div>
     </div>
-    <div class="option-row">
+    <div class="option-row reveal reveal-delay-5">
       <div><span class="name">Déplacement</span><span class="note">au-delà de 15 km</span></div>
       <div class="amount">0.50 CHF / km</div>
     </div>
-    <div class="option-row">
+    <div class="option-row reveal reveal-delay-6">
       <div><span class="name">Essai supplémentaire</span><span class="note">hors formule mariée</span></div>
       <div class="amount">40 CHF</div>
     </div>
   </div>
 </section>
 
-<div class="quote-block">
+<div class="quote-block reveal">
   <p>« Un bon maquillage, c'est celui qu'on oublie — et qui nous fait juste sentir belle. »</p>
 </div>
 
 <section id="contact">
-  <div class="section-head">
+  <div class="section-head reveal">
     <div class="eyebrow">Réservation</div>
     <h2>Discutons de votre projet</h2>
   </div>
-  <p style="text-align:center; max-width:480px; margin:0 auto 20px;">
+  <p class="reveal reveal-delay-1" style="text-align:center; max-width:480px; margin:0 auto 20px;">
     Chaque visage et chaque événement sont uniques. Écrivez-moi pour un devis personnalisé et la disponibilité de votre date.
   </p>
-  <div class="cta-row">
+  <div class="cta-row reveal reveal-delay-2">
     <a href="https://wa.me/41792811708" class="btn filled">Écrire sur WhatsApp</a>
     <a href="mailto:info@juliedisano.ch" class="btn">Envoyer un email</a>
   </div>
@@ -366,6 +393,34 @@
     </a>
   </div>
 </footer>
+
+<script>
+  (function () {
+    if (typeof IntersectionObserver === 'undefined') {
+      // Fallback : tout rendre visible si l'API n'est pas disponible
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('visible');
+      });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      observer.observe(el);
+    });
+  })();
+</script>
 
 </body>
 </html>
