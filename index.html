@@ -31,6 +31,8 @@
     --taupe:#6b5b85;
     --ink:#2a1633;
     --gold:#c9a86a;
+    --whatsapp:#1a8a3c;
+    --whatsapp-hover:#146e30;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth; color-scheme:light only;}
@@ -147,6 +149,17 @@
     border-color:var(--rose);
   }
   .btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px -8px var(--rose); }
+
+  .btn.whatsapp{
+    background:var(--whatsapp);
+    color:#fff;
+    border-color:var(--whatsapp);
+  }
+  .btn.whatsapp:hover{
+    background:var(--whatsapp-hover);
+    border-color:var(--whatsapp-hover);
+    box-shadow:0 8px 20px -8px var(--whatsapp);
+  }
 
   section{
     padding:80px 24px;
@@ -484,6 +497,8 @@
     footer .name{color:var(--rose-deep) !important;}
     .btn{color:var(--rose-deep) !important; border-color:var(--rose) !important; background:transparent !important;}
     .btn.filled{background:var(--rose) !important; color:#fff !important;}
+    .btn.whatsapp{background:var(--whatsapp) !important; border-color:var(--whatsapp) !important; color:#fff !important;}
+    .btn.whatsapp:hover{background:var(--whatsapp-hover) !important; border-color:var(--whatsapp-hover) !important;}
     .about-text p{color:var(--taupe) !important;}
     .footer-credit{color:var(--taupe) !important;}
   }
@@ -746,7 +761,7 @@
     Chaque visage et chaque événement sont uniques. Écrivez-moi pour un devis personnalisé et la disponibilité de votre date.
   </p>
   <div class="cta-row reveal reveal-delay-2">
-    <a href="https://wa.me/41792811708" class="btn filled" data-i18n="contact.cta1">Écrire sur WhatsApp</a>
+    <a href="https://wa.me/41792811708" class="btn whatsapp" data-i18n="contact.cta1">Écrire sur WhatsApp</a>
     <a href="mailto:info@juliedisano.ch" class="btn" data-i18n="contact.cta2">Envoyer un email</a>
   </div>
 </section>
